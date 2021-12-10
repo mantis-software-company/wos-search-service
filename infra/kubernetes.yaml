@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wos-search-service
+  namespace: your_namespace
+  labels:
+    app: wos-search-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wos-search-service
+  template:
+    metadata:
+      labels:
+        app: wos-search-service
+    spec:
+      containers:
+      - name: search
+        image: mantissoftware/python38-runner:1.0.0-15
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: 200m
+          limits:
+            memory: 400Mi
+            cpu: 300m
+        env:
+        - name: PACKAGE_NAME
+          value: wos-search-service
+        - name: PACKAGE_VERSION
+          value: 1.0.0
+        - name: __SERVICE_WOS_USER
+          value: MY_WOS_USER
+         - name: __SERVICE_WOS_PASSWORD
+           value: MY_WOS_PASSWORD
+        - name: ACTUATOR_BASE_URI
+          value: http://your_dns:8800/actuator
+        #- name: REPOSITORY_URL
+        #  value: "your_pypi_repository"
+        - name: REQUIREMENTS_PACKAGES
+          value: "uwsgi~=2.0.20"
+        - name: STARTUP_COMMAND
+          value: "uwsgi --http-socket :5000 -w wos_search_service.main:app --threads 2 --process 4"
+        ports:
+        - containerPort: 5000
+          name: web
+        - containerPort: 9191
+          name: stats
+        - containerPort: 8800
+          name: actuator
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wos-search-service
+  namespace: your_namespace
+spec:
+  selector:
+    app: wos-search-service
+  ports:
+  - protocol: TCP
+    port: 80
+    name: web
+    targetPort: web
+  - protocol: TCP
+    port: 9191
+    name: stats
+    targetPort: stats
+  - protocol: TCP
+    port: 8800
+    name: actuator
+    targetPort: actuator
