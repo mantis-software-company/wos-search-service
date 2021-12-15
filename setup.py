@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="wos-search-service",
-    version="1.0.2",
+    version="1.0.3",
     author="Furkan Kalkan",
     author_email="furkankalkan@mantis.com.tr",
     description="Web of Science Search Service",
