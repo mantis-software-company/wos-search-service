@@ -32,9 +32,9 @@ spec:
         - name: PACKAGE_VERSION
           value: 1.0.0
         - name: __SERVICE_WOS_USER
-          value: MY_WOS_USER
-         - name: __SERVICE_WOS_PASSWORD
-           value: MY_WOS_PASSWORD
+          value: "MY_WOS_USER"
+        - name: __SERVICE_WOS_PASSWORD
+          value: "MY_WOS_PASSWORD"
         - name: ACTUATOR_BASE_URI
           value: http://your_dns:8800/actuator
         #- name: REPOSITORY_URL
