@@ -1,1 +1,1 @@
-from src.wos_author_service.modules.rest.errors import *
+from .errors import *
