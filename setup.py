@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="wos-search-service",
-    version="1.0.0",
+    version="1.0.1",
     author="Furkan Kalkan",
     author_email="furkankalkan@mantis.com.tr",
     description="Web of Science Search Service",
@@ -26,6 +26,8 @@ setuptools.setup(
     install_requires=['Flask~=2.0.2', 'flask-smorest~=0.35.0', 'marshmallow~=3.14.0', 'pyctuator~=0.16.0',
                       'wos~=0.2.5', 'lxml~=4.6.4'],
     python_requires=">3.8.*, <4",
+20
+
     packages=setuptools.find_packages(where="src"),
     package_dir={"": "src"}
 )
