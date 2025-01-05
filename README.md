@@ -1,5 +1,8 @@
 # wos-search-service
 
+> [!WARNING]  
+> Application in this repo is no longer operational as of November 1, 2023, due to the shutdown of the WOS SOAP API.
+
 WOS Search Service is a RESTful web service that provides access to the Web of Science (WOS) citation data.
 It use Web of Science SOAP API to access WOS data. You need premium API account in order use this service.
 
